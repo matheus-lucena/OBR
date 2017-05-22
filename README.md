@@ -30,4 +30,4 @@ value_sensor = namesensor.value; // change value_sensor to name your sensor.
 
 Att, Matheus Giovanni Lucena.
 contact : matheus.giovanni.lu@gmail.com
-phone : +551998335919
+phone : +551998333-5919

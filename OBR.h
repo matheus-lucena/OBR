@@ -42,9 +42,6 @@ private:
   int entrada;
   int time,lastime,timereading,activemillis,ana_dig,powersensor;
 
-  
-
-
 };
 
 #endif

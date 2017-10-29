@@ -26,39 +26,37 @@ vel_A = V_vel_A;
 vel_B = V_vel_B;
 
 if(vel_A < 0){
-digitalWrite(in1,LOW);
-digitalWrite(in2,HIGH);
-analogWrite(p_vel_A,vel_A);
+	vel_A*=-1;
+	digitalWrite(in1,LOW);
+	digitalWrite(in2,HIGH);
+	analogWrite(p_vel_A,vel_A);
 }
 
-if(vel_A > 0){
-digitalWrite(in1,HIGH);
-digitalWrite(in2,LOW);
-analogWrite(p_vel_A,vel_A);
-}
-
-if(vel_A == 0){
-digitalWrite(in1,LOW);
-digitalWrite(in2,LOW);
-analogWrite(p_vel_A,vel_A);
+else if(vel_A > 0){
+	digitalWrite(in1,HIGH);
+	digitalWrite(in2,LOW);
+	analogWrite(p_vel_A,vel_A);
+} else{
+	digitalWrite(in1,LOW);
+	digitalWrite(in2,LOW);
+	analogWrite(p_vel_A,vel_A);
 }
 
 if(vel_B < 0){
-digitalWrite(in3,LOW);
-digitalWrite(in4,HIGH);
-analogWrite(p_vel_B,vel_B);
+	vel_B*=-1;
+	digitalWrite(in3,LOW);
+	digitalWrite(in4,HIGH);
+	analogWrite(p_vel_B,vel_B);
 }
 
-if(vel_B > 0){
-digitalWrite(in3,HIGH);
-digitalWrite(in4,LOW);
-analogWrite(p_vel_B,vel_B);
-}
-
-if(vel_B == 0){
-digitalWrite(in3,LOW);
-digitalWrite(in4,LOW);	
-analogWrite(p_vel_B,vel_B);
+else if(vel_B > 0){
+	digitalWrite(in3,HIGH);
+	digitalWrite(in4,LOW);
+	analogWrite(p_vel_B,vel_B);
+}else{
+	digitalWrite(in3,LOW);
+	digitalWrite(in4,LOW);	
+	analogWrite(p_vel_B,vel_B);
 }
   
 }
@@ -77,22 +75,24 @@ void Sensores::Leitura(int entrada_,int powersensor_,int ana_dig_, int activemil
 	activemillis = activemillis_;
 	
 	if(powersensor != 0){
-	digitalWrite(powersensor,HIGH);
+		digitalWrite(powersensor,HIGH);
 	}
 	
 	if(ana_dig == 0){
-	if(activemillis == 1){
-	time = millis();
-	
-	if(time - lastime > timereading){
-	value = analogRead(entrada);	
-	// todos Sensores
-	lastime = time;
-	}else{
-	value = analogRead(entrada);	
-		// Todos Sensores
+		if(activemillis == 1){
+		time = millis();
+		
+		if(time - lastime > timereading){
+		value = analogRead(entrada);	
+		// todos Sensores
+		lastime = time;
+		}
+
+		else{
+		value = analogRead(entrada);	
+			// Todos Sensores
+		}
 	}
-}
 }else{
 	
 	if(activemillis == 1){

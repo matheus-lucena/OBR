@@ -63,54 +63,27 @@ else if(vel_B > 0){
 
 Sensores::Sensores(){
 	pinMode(entrada,INPUT);
-	int time,lastime,timereading,activemillis;
 }
-void Sensores::Leitura(int entrada_,int powersensor_,int ana_dig_, int activemillis_, int timereading_){
-	
-	entrada = entrada_;
-	ana_dig = ana_dig_;
-	powersensor = powersensor_;
-	
-	timereading = timereading_;
-	activemillis = activemillis_;
-	
-	if(powersensor != 0){
+
+void Sensores::Leitura(int entrada,int powersensor,int ana_dig, int activemillis, int timereading){
+
+	if(powersensor)
 		digitalWrite(powersensor,HIGH);
-	}
 	
-	if(ana_dig == 0){
-		if(activemillis == 1){
+	if(activemillis){
 		time = millis();
-		
+
 		if(time - lastime > timereading){
-		value = analogRead(entrada);	
-		// todos Sensores
-		lastime = time;
+			if(ana_dig)value = analogRead(entrada);
+			else value = digitalRead(entrada);
+			lastime = time;
 		}
 
-		else{
-		value = analogRead(entrada);	
-			// Todos Sensores
-		}
-	}
-}else{
-	
-	if(activemillis == 1){
-	time = millis();
-	
-	if(time - lastime > timereading){
-	value = digitalRead(entrada);	
-	// todos Sensores
-	lastime = time;
 	}else{
-	value = digitalRead(entrada);	
-		// Todos Sensores
+		if(ana_dig) value = analogRead(entrada);
+		else if (!ana_dig) value = digitalRead(entrada);
 	}
-		}
-	
-			}
-			
 }
 
-
-// fazer controle de energia individual por sensor
+// digita 0 analog 1
+// desativa millis 0 ativa 1

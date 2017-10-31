@@ -31,7 +31,7 @@ class Sensores
 public:
 
   Sensores();
-  void Leitura(int entrada_,int powersensor_, int ana_dig_, int activemillis_, int timereading_);
+  void Leitura(int entrada,int powersensor, int ana_dig, int activemillis, int timereading);
 
   
   int value;
